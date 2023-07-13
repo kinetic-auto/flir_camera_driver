@@ -34,7 +34,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <arg name="calibrated"                default="False" />
 
   <group ns="$(arg camera_name)">
-      <group ns="secondary">
+    <group ns="secondary">
       <node pkg="nodelet" type="nodelet" name="camera_nodelet_manager" args="manager" cwd="node" output="screen"/>
 
       <!-- Camera nodelet -->
@@ -46,13 +46,12 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <param name="image_format_color_coding"       value="$(arg color)" />
         <param name="image_format_roi_width"          value="$(arg width)" />
         <param name="image_format_roi_height"         value="$(arg height)" />
-    </node>
-
+      </node>
     </group>
   </group>
 
   <group ns="$(arg camera_name)">
-      <group ns="primary">
+    <group ns="primary">
       <node pkg="nodelet" type="nodelet" name="camera_nodelet_manager" args="manager" cwd="node" output="screen"/>
 
       <!-- Camera nodelet -->
@@ -64,8 +63,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <param name="image_format_color_coding"       value="$(arg color)" />
         <param name="image_format_roi_width"          value="$(arg width)" />
         <param name="image_format_roi_height"         value="$(arg height)" />
-    </node>
-
+      </node>
     </group>
   </group>
 
