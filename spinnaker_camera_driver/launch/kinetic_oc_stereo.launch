@@ -26,15 +26,17 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
 <launch>
   <arg name="camera_name"               default="stereo" />
-  <arg name="camera_serial_secondary"   default="22073953" />
-  <arg name="camera_serial_primary"     default="22241794" /> <!-- MASTER CAMERA -->
+  <arg name="camera_serial_secondary"           default="22073953" />
+  <arg name="camera_serial_primary"             default="22241794" /> <!-- MASTER CAMERA -->
+  <arg name="camera_serial_second_secondary"    default="22128587" />
+  <arg name="camera_serial_second_primary"      default="22140157" /> <!-- MASTER CAMERA -->
   <arg name="color"                     default="Mono8" />
   <arg name="width"                     default="1920" />
   <arg name="height"                    default="1200" />
   <arg name="calibrated"                default="False" />
 
   <group ns="$(arg camera_name)">
-      <group ns="secondary">
+    <group ns="secondary">
       <node pkg="nodelet" type="nodelet" name="camera_nodelet_manager" args="manager" cwd="node" output="screen"/>
 
       <!-- Camera nodelet -->
@@ -46,13 +48,12 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <param name="image_format_color_coding"       value="$(arg color)" />
         <param name="image_format_roi_width"          value="$(arg width)" />
         <param name="image_format_roi_height"         value="$(arg height)" />
-    </node>
-
+      </node>
     </group>
   </group>
 
   <group ns="$(arg camera_name)">
-      <group ns="primary">
+    <group ns="primary">
       <node pkg="nodelet" type="nodelet" name="camera_nodelet_manager" args="manager" cwd="node" output="screen"/>
 
       <!-- Camera nodelet -->
@@ -64,8 +65,41 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <param name="image_format_color_coding"       value="$(arg color)" />
         <param name="image_format_roi_width"          value="$(arg width)" />
         <param name="image_format_roi_height"         value="$(arg height)" />
-    </node>
+      </node>
+    </group>
+  </group>
 
+  <group ns="$(arg camera_name)">
+    <group ns="second_primary">
+      <node pkg="nodelet" type="nodelet" name="camera_nodelet_manager" args="manager" cwd="node" output="screen"/>
+
+      <!-- Camera nodelet -->
+      <node pkg="nodelet" type="nodelet" name="spinnaker_camera_nodelet"
+            args="load spinnaker_camera_driver/SpinnakerCameraNodelet camera_nodelet_manager" >
+
+        <param name="frame_id"                        value="camera_second_primary" />
+        <param name="serial"                          value="$(arg camera_serial_second_primary)" />
+        <param name="image_format_color_coding"       value="$(arg color)" />
+        <param name="image_format_roi_width"          value="$(arg width)" />
+        <param name="image_format_roi_height"         value="$(arg height)" />
+      </node>
+    </group>
+  </group>
+
+  <group ns="$(arg camera_name)">
+    <group ns="second_secondary">
+      <node pkg="nodelet" type="nodelet" name="camera_nodelet_manager" args="manager" cwd="node" output="screen"/>
+
+      <!-- Camera nodelet -->
+      <node pkg="nodelet" type="nodelet" name="spinnaker_camera_nodelet"
+            args="load spinnaker_camera_driver/SpinnakerCameraNodelet camera_nodelet_manager" >
+
+        <param name="frame_id"                        value="camera_second_secondary" />
+        <param name="serial"                          value="$(arg camera_serial_second_secondary)" />
+        <param name="image_format_color_coding"       value="$(arg color)" />
+        <param name="image_format_roi_width"          value="$(arg width)" />
+        <param name="image_format_roi_height"         value="$(arg height)" />
+      </node>
     </group>
   </group>
 
@@ -79,13 +113,20 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <param name="/stereo/secondary/spinnaker_camera_nodelet/enable_trigger" value="On" />
   <param name="/stereo/secondary/spinnaker_camera_nodelet/exposure_auto" value="Off" />
   <param name="/stereo/secondary/spinnaker_camera_nodelet/exposure_time" value="10000" />
-
+  <param name="/stereo/second_secondary/spinnaker_camera_nodelet/trigger_source" value="Line3" />
+  <param name="/stereo/second_secondary/spinnaker_camera_nodelet/enable_trigger" value="On" />
+  <param name="/stereo/second_secondary/spinnaker_camera_nodelet/exposure_auto" value="Off" />
+  <param name="/stereo/second_secondary/spinnaker_camera_nodelet/exposure_time" value="10000" />
 
   <!-- MASTER CAMERA (SET FRAME RATE) -->
   <param name="/stereo/primary/spinnaker_camera_nodelet/acquisition_frame_rate" value="5.0" />
   <param name="/stereo/primary/spinnaker_camera_nodelet/acquisition_frame_rate_enable" value="true" />
   <param name="/stereo/primary/spinnaker_camera_nodelet/exposure_auto" value="Off" />
   <param name="/stereo/primary/spinnaker_camera_nodelet/exposure_time" value="10000" />
+  <param name="/stereo/second_primary/spinnaker_camera_nodelet/acquisition_frame_rate" value="5.0" />
+  <param name="/stereo/second_primary/spinnaker_camera_nodelet/acquisition_frame_rate_enable" value="true" />
+  <param name="/stereo/second_primary/spinnaker_camera_nodelet/exposure_auto" value="Off" />
+  <param name="/stereo/second_primary/spinnaker_camera_nodelet/exposure_time" value="10000" />
 
   <!-- CAMERA RECTIFICATION / PROJECTION EXAMPLE-->
 <!--   <node ns="stereo/secondary" name="image_proc" pkg="image_proc" type="image_proc"> </node> -->

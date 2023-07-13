@@ -5,7 +5,7 @@ Panels:
     Property Tree Widget:
       Expanded: ~
       Splitter Ratio: 0.5
-    Tree Height: 271
+    Tree Height: 1632
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -28,6 +28,30 @@ Visualization Manager:
     - Class: rviz/Image
       Enabled: true
       Image Topic: /stereo/secondary/image_raw
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Image
+      Normalize Range: true
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: true
+    - Class: rviz/Image
+      Enabled: true
+      Image Topic: /stereo/second_secondary/image_raw
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Image
+      Normalize Range: true
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: true
+    - Class: rviz/Image
+      Enabled: true
+      Image Topic: /stereo/second_primary/image_raw
       Max Value: 1
       Median window: 5
       Min Value: 0
@@ -83,12 +107,12 @@ Visualization Manager:
 Window Geometry:
   Displays:
     collapsed: false
-  Height: 2290
+  Height: 2032
   Hide Left Dock: false
   Hide Right Dock: false
   Image:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd00000002000000000000087c00000858fc0200000002fb000000100044006900730070006c006100790073000000006d000005820000018000fffffffb0000000a0049006d006100670065010000006d000008580000002500ffffff000000010000086c00000858fc0200000001fb0000000a0049006d006100670065010000006d000008580000002500ffffff000000200000085800000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
-  Width: 4384
+  QMainWindow State: 000000ff00000000fd0000000200000000000004b700000756fc0200000001fb000000100044006900730070006c006100790073010000006d000007560000018000ffffff0000000100000a1100000756fc0200000005fb0000000a0049006d006100670065010000006d000001d80000002500fffffffb0000000a0049006d0061006700650100000251000001d10000002500fffffffb0000000a0049006d006100670065010000042e000001eb0000002500fffffffb0000000a0049006d00610067006501000006250000019e0000002500fffffffb0000000a0049006d00610067006501000005c1000002020000000000000000000000200000075600000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Width: 3840
   X: 0
-  Y: 102
+  Y: 54
