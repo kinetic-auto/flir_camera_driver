@@ -15,7 +15,7 @@ Visualization Manager:
   Displays:
     - Class: rviz/Image
       Enabled: true
-      Image Topic: /stereo/primary/image_raw
+      Image Topic: /stereo/left_primary/image_raw
       Max Value: 1
       Median window: 5
       Min Value: 0
@@ -27,7 +27,7 @@ Visualization Manager:
       Value: true
     - Class: rviz/Image
       Enabled: true
-      Image Topic: /stereo/secondary/image_raw
+      Image Topic: /stereo/left_secondary/image_raw
       Max Value: 1
       Median window: 5
       Min Value: 0
@@ -39,7 +39,7 @@ Visualization Manager:
       Value: true
     - Class: rviz/Image
       Enabled: true
-      Image Topic: /stereo/second_secondary/image_raw
+      Image Topic: /stereo/right_secondary/image_raw
       Max Value: 1
       Median window: 5
       Min Value: 0
@@ -51,7 +51,7 @@ Visualization Manager:
       Value: true
     - Class: rviz/Image
       Enabled: true
-      Image Topic: /stereo/second_primary/image_raw
+      Image Topic: /stereo/right_primary/image_raw
       Max Value: 1
       Median window: 5
       Min Value: 0
