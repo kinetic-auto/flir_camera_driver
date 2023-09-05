@@ -124,12 +124,9 @@ void DiagnosticsManager::addAnalyzers()
   }
 
   // Bond to Diagnostics Aggregator
-  if(bond_ == nullptr)
-  {
+  if(bond_ == nullptr) {
     bond_ = std::shared_ptr<bond::Bond>(new bond::Bond("/diagnostics_agg/bond" + node_namespace, node_namespace));
-  }
-  else if(!bond_->isBroken())
-  {
+  } else if(!bond_->isBroken()) {
     return;
   }
   bond_->setConnectTimeout(120);
@@ -189,6 +186,7 @@ diagnostic_msgs::DiagnosticStatus DiagnosticsManager::getDiagStatus(const diagno
 
 void DiagnosticsManager::processDiagnostics(SpinnakerCamera* spinnaker)
 {
+  if (spinnaker == nullptr) return;
   std::string node_name = ros::this_node::getName().substr(1);
   diagnostic_msgs::DiagnosticArray diag_array;
 
