@@ -559,8 +559,6 @@ private:
             NODELET_DEBUG("Starting camera.");
             spinnaker_.start();
             NODELET_DEBUG("Started camera.");
-            NODELET_DEBUG("Attention: if nothing subscribes to the camera topic, the camera_info is not published "
-                          "on the correspondent topic.");
             state = STARTED;
           }
           catch (std::runtime_error& e)
