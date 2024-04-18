@@ -614,11 +614,9 @@ private:
             pub_->publish(wfov_image);
 
             // Publish the message using standard image transport
-            if (it_pub_.getNumSubscribers() > 0)
-            {
-              sensor_msgs::ImagePtr image(new sensor_msgs::Image(wfov_image->image));
-              it_pub_.publish(image, ci_);
-            }
+            sensor_msgs::ImagePtr image(new sensor_msgs::Image(wfov_image->image));
+            it_pub_.publish(image, ci_);
+            
           }
           catch (CameraTimeoutException& e)
           {
